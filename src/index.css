@@ -1,0 +1,169 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: "Cormorant Garamond", "Noto Sans Bengali", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Noto Sans Bengali", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --bg-canvas: #F4F7FB;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #EAF1FA;
+  --border-subtle: rgba(15, 23, 42, 0.12);
+  --text-primary: #0B132B;
+  --text-secondary: #475569;
+  --accent-primary: #0891B2;
+  --accent-hover: #0E7490;
+  --accent-soft: rgba(8, 145, 178, 0.12);
+  --accent-contrast: #FFFFFF;
+  --font-scale: 1;
+}
+
+html.dark {
+  --bg-canvas: #060D1E;
+  --bg-surface: #0B172E;
+  --bg-elevated: #112240;
+  --border-subtle: rgba(56, 189, 248, 0.16);
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --accent-primary: #22D3EE;
+  --accent-hover: #06B6D4;
+  --accent-soft: rgba(34, 211, 238, 0.14);
+  --accent-contrast: #060D1E;
+}
+
+/* Accent palette customization */
+html[data-accent="cyan"].dark {
+  --accent-primary: #22D3EE;
+  --accent-hover: #06B6D4;
+  --accent-soft: rgba(34, 211, 238, 0.14);
+}
+html[data-accent="cyan"]:not(.dark) {
+  --accent-primary: #0891B2;
+  --accent-hover: #0E7490;
+  --accent-soft: rgba(8, 145, 178, 0.12);
+}
+
+html[data-accent="sky"].dark {
+  --accent-primary: #38BDF8;
+  --accent-hover: #0EA5E9;
+  --accent-soft: rgba(56, 189, 248, 0.15);
+}
+html[data-accent="sky"]:not(.dark) {
+  --accent-primary: #0284C7;
+  --accent-hover: #0369A1;
+  --accent-soft: rgba(2, 132, 199, 0.12);
+}
+
+html[data-accent="emerald"].dark {
+  --accent-primary: #34D399;
+  --accent-hover: #10B981;
+  --accent-soft: rgba(52, 211, 153, 0.14);
+}
+html[data-accent="emerald"]:not(.dark) {
+  --accent-primary: #059669;
+  --accent-hover: #047857;
+  --accent-soft: rgba(5, 150, 105, 0.12);
+}
+
+html[data-accent="teal"].dark {
+  --accent-primary: #2DD4BF;
+  --accent-hover: #14B8A6;
+  --accent-soft: rgba(45, 212, 191, 0.14);
+}
+html[data-accent="teal"]:not(.dark) {
+  --accent-primary: #0D9488;
+  --accent-hover: #0F766E;
+  --accent-soft: rgba(13, 148, 136, 0.12);
+}
+
+/* Accessibility modifiers */
+html[data-font-scale="sm"] {
+  font-size: 15px;
+}
+html[data-font-scale="md"] {
+  font-size: 16px;
+}
+html[data-font-scale="lg"] {
+  font-size: 18px;
+}
+
+html[data-contrast="high"].dark {
+  --bg-canvas: #020612;
+  --bg-surface: #071024;
+  --bg-elevated: #0E1C38;
+  --border-subtle: rgba(103, 232, 249, 0.35);
+  --text-primary: #FFFFFF;
+  --text-secondary: #CBD5E1;
+}
+html[data-contrast="high"]:not(.dark) {
+  --bg-canvas: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #E2E8F0;
+  --border-subtle: rgba(15, 23, 42, 0.32);
+  --text-primary: #020617;
+  --text-secondary: #1E293B;
+}
+
+html[data-reduced-motion="true"] *,
+html[data-reduced-motion="true"] *::before,
+html[data-reduced-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-focus-ring="enhanced"] :focus-visible {
+  outline: 3px solid var(--accent-primary) !important;
+  outline-offset: 3px !important;
+}
+
+@layer base {
+  html {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-editorial {
+    font-family: var(--font-serif);
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--accent-primary);
+    color: var(--accent-contrast);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 3px;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
